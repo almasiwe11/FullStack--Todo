@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react"
-import Hero from "./Components/Hero/Hero"
-import Axios from "axios"
+import DragAndDrop from "./Components/DragAndDrop"
+import Header from "./Components/Header"
+import InputTodo from "./Components/InputTodo"
+import TodoList from "./Components/TodoList"
 
 function App() {
-  const [backend, setBackend] = useState()
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await Axios.get("http://localhost:5555/api")
-      setBackend(data.data)
-    }
-
-    getData()
-  }, [])
   return (
-    <div className="text-blue-400 text-4xl font-bold">
-      <Hero />
-      {backend}
-    </div>
+    <main className="w-full py-10 md:py-16 lg:py-20 bg-w-auto min-h-[100vh] bg-mob-light lg:bg-des-light  bg-no-repeat">
+      <Header />
+      <InputTodo />
+      <TodoList />
+      <DragAndDrop />
+    </main>
   )
 }
 
