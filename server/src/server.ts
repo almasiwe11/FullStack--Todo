@@ -2,31 +2,18 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import Todo from "../models/Todo.js"
+import router from "../routes/todoRoutes.ts"
+import { notFound } from "../middleware/not-found.ts"
+import { errorHandlerMiddleware } from "../middleware/error-handler.ts"
 dotenv.config()
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
-
-app.get("/api", (_, res) => {
-  async function getTodos() {
-    const tasks = await Todo.find({})
-    res.status(200).json(tasks)
-  }
-
-  getTodos()
-})
-
-app.post("/api", (req, res) => {
-  async function createTodo() {
-    const task = await Todo.create(req.body)
-    res.status(200).json(task)
-  }
-
-  createTodo()
-})
+app.use("/api", router)
+app.use(errorHandlerMiddleware)
+app.use(notFound)
 
 async function start() {
   await mongoose.connect(process.env.MONGO_URI)
