@@ -12,16 +12,24 @@ export default {
 
       colors: {
         "dark-blue": "#171823",
+        "bg-white-gray": "#FAFAFA",
         "gray-text": "#5B5E7E",
         "gray-menu": "#979797",
         "white-menu": "#C8CBE7",
+        "gray-dark-text": "#494C6B",
+        "gray-light-text": "#9495A5",
         "gray-border-dark": "#393A4B",
         "gray-border-light": "#E3E4F1",
         selected: "#3A7CFD",
       },
 
+      fontFamily: {
+        josefin: ["Josefin Sans", "sans-serif"],
+      },
+
       gridTemplateColumns: {
         field: "auto, 1fr",
+        todo: "auto, 1fr auto",
       },
     },
     screens: {

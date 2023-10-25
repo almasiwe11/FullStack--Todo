@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import Todo from "./Todo"
 import { TaskType } from "../../Types/TaskTypes"
+import Field from "./Field"
+import TodosController from "./TodosController"
 export default function TodoList() {
   const [todoList, setTodoList] = useState<TaskType[]>()
   useEffect(() => {
@@ -14,12 +15,13 @@ export default function TodoList() {
     getTodos()
   }, [])
   return (
-    <div>
+    <div className="wrapper bg-white relative rounded-lg shadow-md">
       {todoList &&
         todoList.length > 0 &&
-        todoList.map((todo) => {
-          return <Todo key={todo._id} task={todo} />
+        todoList.map((todo, i) => {
+          return <Field type="todo" key={todo._id} index={i} task={todo} />
         })}
+      <TodosController len={todoList?.length} />
     </div>
   )
 }
